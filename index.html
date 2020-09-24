@@ -6,38 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="display">000000000000</div>
-    </div>
-    <div class="row">
-        <div class="col button">7</div>
-        <div class="col button">8</div>
-        <div class="col button">9</div>
-        <div class="col button">/</div>
-    </div>
-    <div class="row">
-        <div class="col">4</div>
-        <div class="col">5</div>
-        <div class="col">6</div>
-        <div class="col">*</div>
-    </div>
-    <div class="row">
-        <div class="col">1</div>
-        <div class="col">2</div>
-        <div class="col">3</div>
-        <div class="col">-</div>
-    </div>
-    <div class="row">
-        <div class="col">+/-</div>
-        <div class="col">0</div>
-        <div class="col">.</div>
-        <div class="col">=</div>
-    </div>
+    <div class="row justify-content-center">
+		<div class="col-4 calc mt-5">
+			<div class="row display mb-3">
+				<div class="col-11 text-right">
+					<div id="displayId">0</div>
+				</div>
+				<div class="col-11 text-right">
+					<div id="maxId"></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('7')">7</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('8')">8</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('9')">9</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="setDivisionOp()">/</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('4')">4</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('5')">5</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('6')">6</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="setMultiplyOp()">*</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('1')">1</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('2')">2</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('3')">3</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="setMinusOp()">-</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="button" onclick="switchNum()">+/-</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="updateCurrentNum('0')">0</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="setResultOp()">=</div>
+				</div>
+				<div class="col-3">
+					<div class="button" onclick="setPlusOp()">+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+        
 </div>
-
+<script src="main.js" type="text/javascript"></script>
 </body>
 </html>

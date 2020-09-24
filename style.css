@@ -1,10 +1,40 @@
-body{
-    background-color: lightgray;
+* {
+    font-family: 'Libre Caslon Display', serif;
+    margin: 0!important;
+    padding: 0!important;
 }
-.content{
-    width: 70%;
-    height: calc(100% - 64px - 32px);
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid ;
+
+body {
+    background-image: linear-gradient(to right, #2C3E50, #4CA1AF);
+    text-align: center;
+    padding-top: 10%;
+}
+.calc {
+	background-color: #F5EFED;
+	color: #3C0208;
+    border: 1px solid #F5EFED;    
+    padding: 10px!important;
+}
+
+.display {
+       border: 1px solid;
+}
+#displayId {
+	font-size: 1.2rem;
+}
+#maxId {
+	font-size: .8rem;
+	min-height: 1.2rem;
+}
+.button{
+    border: 1px solid #3C0208;
+    color: #3C0208;
+	font-size: 2rem;
+    margin: 5px!important;	
+}
+.button:hover{
+	color: #F5EFED;
+	background-color: #3C0208;
+	transition: .1s;
+	box-shadow: 0px 0px 5px 1px black;
 }
