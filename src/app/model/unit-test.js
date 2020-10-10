@@ -1,8 +1,10 @@
 const IS_RUN_ALL_TEST = true;
 
 const RUN_NUMBER_TEST = false;
-const RUN_NUMPAD_TEST = true;
+const RUN_NUMPAD_TEST = false;
 const RUN_BTN_TEST = false;
+const RUN_DISPLAY_TEST = true;
+
 /*=======================
 | run all tests         |
 =======================*/
@@ -12,6 +14,7 @@ function runTests(){
 	runBTNTests();
 	runNumpadTests();
 	runNumberTests();
+	runDisplayTests();
 }
 
 /*=======================
@@ -73,6 +76,7 @@ function test(expected, className, initVals, functName, functParams, isErrorExpe
 		testResult = !isErrorExpected?expected===actual:false;
 		generateTestLog(testResult, actual, expected, className, initVals, functName, functParams, isErrorExpected);						
 	}catch(err){
+		//console.log(err);
 		testResult = err instanceof MyError && isErrorExpected;
 		generateTestLog(testResult, actual, expected, className, initVals, functName, functParams, isErrorExpected, err);
 	}
@@ -249,4 +253,91 @@ function runNumberTests(){
 	test(true, className, [(new Number()).min+"9"], "isMin");
 	test(true, className, [(new Number()).min], "isMin");
 	test(false, className, ["2"], "isMin");	
+}
+
+/*=======================
+| display test function  |
+=======================*/
+
+function runDisplayTests(){
+	let className = "Display";
+	if(!RUN_DISPLAY_TEST){
+		return;
+	}
+	let display;
+	let displayId = "displayTestId";
+	let maxId = "maxTestId";
+	let ele1;
+	let ele2;
+	let ele1Txt;
+	let ele2Txt;
+	let num1;
+	let num2;
+	let num3;
+	let value1;
+	let value2;
+	let value3;
+	
+	startTestsMsg(className);
+	test("MyError", className, [null, "abc"], "toString", [], true);
+	test("MyError", className, ["abc", null], "toString", [], true);
+	test("MyError", className, ["abc", 12], "toString", [], true);
+	test("MyError", className, ["abc", true], "toString", [], true);
+	test("MyError", className, [12, "abc"], "toString", [], true);
+	test("MyError", className, [true, "abc"], "toString", [], true);
+	test("MyError", className, ["abc", "abc"], "show", [null], true);
+	test("MyError", className, ["abc", "abc"], "show", [""], true);
+	test("MyError", className, ["abc", "abc"], "setDisplayValue", [1], true);
+	test("MyError", className, ["abc", "abc"], "setDisplayValue", [null], true);
+	test("MyError", className, ["abc", "abc"], "setDisplayValue", ["1"], true);
+	test(displayId+","+maxId, className, [displayId, maxId], "toString");
+	
+	ele1 = generateTestTag(displayId);
+	ele2 = generateTestTag(maxId);
+	value1 = "325";
+	num1 = new Number(value1);
+	display = new Display(displayId, maxId);
+	display.show(num1);
+	ele1Txt = document.getElementById(displayId).innerHTML;
+	ele2Txt = document.getElementById(maxId).innerHTML;
+	if(ele1Txt === value1){
+		greenLog("Display.show() change displayId innerHTML");
+	}else{
+		redLog("Display.show() do not change displayId innerHTML");
+	}
+	if(ele2Txt === ""){
+		greenLog("Display.show() change maxId innerHTML");
+	}else{
+		redLog("Display.show() do not change maxId innerHTML");
+	}
+	value1 = num1.getMax();
+	num1 = new Number(value1);
+	display.show(num1);
+	ele2Txt = document.getElementById(maxId).innerHTML;
+	if(ele2Txt === "max"){
+		greenLog("Display.show() change maxId innerHTML");
+	}else{
+		redLog("Display.show() do not change maxId innerHTML");
+	}
+	value1 = num1.getMin();
+	num1 = new Number(value1);
+	display.show(num1);
+	ele2Txt = document.getElementById(maxId).innerHTML;
+	if(ele2Txt === "min"){
+		greenLog("Display.show() change maxId innerHTML");
+	}else{
+		redLog("Display.show() do not change maxId innerHTML");
+	}
+	value1 = "-0";
+	num1 = new Number(value1);
+	display.show(num1);
+	ele1Txt = document.getElementById(displayId).innerHTML;
+	if(ele1Txt === "0"){
+		greenLog("Display.show() change displayId innerHTML");
+	}else{
+		redLog("Display.show() do not change displayId innerHTML");
+	}
+	removeTestTag(ele1);
+	removeTestTag(ele2);
+	
 }
